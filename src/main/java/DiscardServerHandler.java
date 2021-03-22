@@ -10,11 +10,8 @@ import java.net.Socket;
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        try {
-            System.out.println(ctx);
-        } finally {
-            ReferenceCountUtil.release(msg);
-        }
+        ctx.write(msg); // (1)
+        ctx.flush();    // (2)
     }
 
     @Override
@@ -25,10 +22,9 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 }
 
 //public class Server {
-
 //    public static void main(String[] args) {
 //        System.out.println("Server started!");
-//        try (ServerSocket server = new ServerSocket(8888)) {
+//        try (ServerSocket server = new ServerSocket(8080)) {
 //            while (true)
 //                try (
 //                        Socket socket = server.accept();
