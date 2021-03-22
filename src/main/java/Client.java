@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         System.out.println("Client!");
-        try (Socket socket = new Socket("localhost", 8888);
+        try (Socket socket = new Socket("localhost", 8080);
              BufferedWriter writer =
                      new BufferedWriter(
                              new OutputStreamWriter(
